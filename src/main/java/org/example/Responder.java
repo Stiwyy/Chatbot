@@ -25,26 +25,29 @@ public class Responder {
         responseMap.put("slow", "I think this might be related to your hardware. Upgrading your processor should resolve any performance issues.");
         responseMap.put("bug", "Well, there's nothing I can do right now to fix this issue. We'll just have to wait for our developers to fix the bug.");
         responseMap.put("help", "Sure, let me know what the problem is so I can assist you!");
-        responseMap.put("fablas", "I like him. He's a very good fortnite player and twitch streamer!");
+        responseMap.put("fablas", "I like him. He's a very good Fortnite player and Twitch streamer!");
         responseMap.put("minecraft", "Minecraft is my favorite game!");
 
     }
 
     public String generateResponse(List<String> words) {
         String inputPhrase = String.join(" ", words).trim().toLowerCase();
-        String response = responseMap.get(inputPhrase);
-        if (response != null) {
-            return response;
-        }
 
-        for (String keyword : words) {
-            response = responseMap.get(keyword);
-            if (response != null) {
-                return response;
+        for (String key : responseMap.keySet()) {
+            if (key.contains(inputPhrase)) {
+                return responseMap.get(key);
             }
         }
 
-        response = findBestMatch(words);
+        for (String keyword : words) {
+            for (String key : responseMap.keySet()) {
+                if (key.contains(keyword)) {
+                    return responseMap.get(key);
+                }
+            }
+        }
+
+        String response = findBestMatch(words);
         if (response != null) {
             return response;
         }
@@ -56,9 +59,10 @@ public class Responder {
         for (int i = 0; i < words.size(); i++) {
             for (int j = i + 1; j <= words.size(); j++) {
                 String subPhrase = String.join(" ", words.subList(i, j)).trim().toLowerCase();
-                String response = responseMap.get(subPhrase);
-                if (response != null) {
-                    return response;
+                for (String key : responseMap.keySet()) {
+                    if (key.contains(subPhrase)) {
+                        return responseMap.get(key);
+                    }
                 }
             }
         }
