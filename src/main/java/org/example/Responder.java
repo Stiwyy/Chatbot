@@ -31,16 +31,12 @@ public class Responder {
     }
 
     public String generateResponse(List<String> words) {
-        // Combine the input words into a single string
         String inputPhrase = String.join(" ", words).trim().toLowerCase();
-
-        // Check if the combined input phrase matches any key in the responseMap
         String response = responseMap.get(inputPhrase);
         if (response != null) {
             return response;
         }
 
-        // If the phrase wasn't found, check for individual words
         for (String keyword : words) {
             response = responseMap.get(keyword);
             if (response != null) {
@@ -48,18 +44,15 @@ public class Responder {
             }
         }
 
-        // If no matches are found, try to find the best possible match
         response = findBestMatch(words);
         if (response != null) {
             return response;
         }
 
-        // Default response if no keywords or phrases match
         return this.pickDefaultResponse();
     }
 
     private String findBestMatch(List<String> words) {
-        // Iterate through possible combinations of words to find a match
         for (int i = 0; i < words.size(); i++) {
             for (int j = i + 1; j <= words.size(); j++) {
                 String subPhrase = String.join(" ", words.subList(i, j)).trim().toLowerCase();

@@ -22,7 +22,6 @@ public class SupportSystem {
 			if (inputWords.contains("bye")) {
 				finished = true;
 			} else {
-				// Pass inputWords directly to generateResponse
 				String response = responder.generateResponse(inputWords);
 				System.out.println(response);
 			}

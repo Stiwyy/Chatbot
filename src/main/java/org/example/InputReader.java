@@ -16,8 +16,6 @@ public class InputReader {
 	public List<String> getInput() {
 		System.out.print("> ");
 		String inputLine = readInputLine().trim().toLowerCase();
-
-		// Split the input line into words and store them in a List
 		List<String> words = Arrays.asList(inputLine.split(" "));
 		return words;
 	}
