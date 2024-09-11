@@ -25,6 +25,9 @@ public class Responder {
         responseMap.put("slow", "I think this might be related to your hardware. Upgrading your processor should resolve any performance issues.");
         responseMap.put("bug", "Well, there's nothing I can do right now to fix this issue. We'll just have to wait for our developers to fix the bug.");
         responseMap.put("help", "Sure, let me know what the problem is so I can assist you!");
+        responseMap.put("fablas", "I like him. He's a very good fortnite player and twitch streamer!");
+        responseMap.put("minecraft", "Minecraft is my favorite game!");
+
     }
 
     public String generateResponse(List<String> words) {
